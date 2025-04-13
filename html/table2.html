@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nested Tables (Styled)</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+        }
+        .outermost {
+            border: 5px solid royalblue;
+            /* border-spacing: 0; */
+            width: 600px;
+            height: 500px;
+            background-color: MidnightBlue;
+            /* margin: auto;
+            display: table; */
+        }
+        .level-1 {
+            width: 520px;
+            height: 400px;
+            background-color: yellow;
+        }
+        .level-2 {
+            width: 420px;
+            height: 300px;
+            background-color: red;
+        }
+        .level-3 {
+            width: 320px;
+            height: 200px;
+            background-color: white;
+        }
+        .level-4 {
+            width: 240px;
+            height: 110px;
+            background-color: PaleGreen;
+        }
+        table {
+            border-spacing: 0;
+            text-align: center;
+            margin: auto;
+        }
+        a {
+            color: white;
+            font-size: 35px;
+            text-decoration: none;
+        }
+        a:hover {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <table class="outermost">
+        <tr>
+            <td>
+                <table class="level-1">
+                    <tr>
+                        <td>
+                            <table class="level-2">
+                                <tr>
+                                    <td>
+                                        <table class="level-3">
+                                            <tr>
+                                                <td>
+                                                    <table class="level-4">
+                                                        <tr>
+                                                            <td>
+                                                                <a target="_main" href="file:///C:/CC++/table3.html">Click me</a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
