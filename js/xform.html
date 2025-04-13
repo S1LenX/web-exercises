@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Form Validation</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        form { width: 500px; margin: auto; }
+        label { display: block; margin-top: 10px; }
+        input, select, textarea { width: 100%; padding: 5px; margin-top: 5px; }
+        .error { color: red; font-size: 12px; }
+        #time { position: absolute; right: 20px; top: 20px; border: 1px solid black; padding: 10px; }
+        button { margin-top: 10px; padding: 5px 10px; }
+    </style>
+</head>
+<body>
+
+    <h2>Test JavaScript Form Validation</h2>
+    <div id="time"></div>
+
+    <form id="myForm">
+        <label>Name* <input type="text" name="name"></label>
+        <span class="error" id="nameError"></span>
+
+        <label>Address* <textarea name="address"></textarea></label>
+        <span class="error" id="addressError"></span>
+
+        <label>Zip Code* <input type="text" name="zipcode"></label>
+        <span class="error" id="zipError"></span>
+
+        <label>Country* 
+            <select name="country">
+                <option value="">Please select...</option>
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+            </select>
+        </label>
+        <span class="error" id="countryError"></span>
+
+        <label>Gender* 
+            <input type="radio" name="gender" value="Male"> Male
+            <input type="radio" name="gender" value="Female"> Female
+        </label>
+        <span class="error" id="genderError"></span>
+
+        <label>Preferences* 
+            <input type="checkbox" name="preferences" value="Red"> Red
+            <input type="checkbox" name="preferences" value="Green"> Green
+            <input type="checkbox" name="preferences" value="Blue"> Blue
+        </label>
+        <span class="error" id="preferencesError"></span>
+
+        <label>Phone* <input type="text" name="phone"></label>
+        <span class="error" id="phoneError"></span>
+
+        <label>Email* <input type="email" name="email"></label>
+        <span class="error" id="emailError"></span>
+
+        <label>Password (8-15 characters)* <input type="password" name="password"></label>
+        <span class="error" id="passwordError"></span>
+
+        <label>PAN No: <input type="text" name="pan"></label>
+        <span class="error" id="panError"></span>
+
+        <button type="button" onclick="validateForm()">SEND</button>
+        <input type="reset" style="height: 30px;width:70px"></button>
+    </form>
+
+    <script>
+        function updateTime() {
+            document.getElementById("time").innerText = "Time: " + new Date().toLocaleTimeString();
+        }
+        setInterval(updateTime, 1000);
+
+        function validateForm() {
+            let name = document.getElementsByName("name")[0];
+            let address = document.getElementsByName("address")[0];
+            let zipcode = document.getElementsByName("zipcode")[0];
+            let country = document.getElementsByName("country")[0];
+            let gender = document.getElementsByName("gender");
+            let preferences = document.getElementsByName("preferences");
+            let phone = document.getElementsByName("phone")[0];
+            let email = document.getElementsByName("email")[0];
+            let password = document.getElementsByName("password")[0];
+            let pan = document.getElementsByName("pan")[0];
+            
+            let valid = true;
+
+            if (name.value.trim() === "" || name.value.length > 15) {
+                document.getElementById("nameError").innerText = "Required (Max 15 chars)";
+                name.focus();
+                valid = false;
+            } else document.getElementById("nameError").innerText = "";
+
+            if (address.value.trim() === "") {
+                document.getElementById("addressError").innerText = "Required";
+                address.focus();
+                valid = false;
+            } else document.getElementById("addressError").innerText = "";
+
+            if (!/^\d{5,6}$/.test(zipcode.value)) {
+                document.getElementById("zipError").innerText = "Numeric (Max 6 digits)";
+                zipcode.focus();
+                valid = false;
+            } else document.getElementById("zipError").innerText = "";
+
+            if (country.value === "") {
+                document.getElementById("countryError").innerText = "Select a country";
+                country.focus();
+                valid = false;
+            } else document.getElementById("countryError").innerText = "";
+
+            if (![...gender].some(r => r.checked)) {
+                document.getElementById("genderError").innerText = "Select gender";
+                valid = false;
+            } else document.getElementById("genderError").innerText = "";
+
+            if (![...preferences].some(r => r.checked)) {
+                document.getElementById("preferencesError").innerText = "Select at least one";
+                valid = false;
+            } else document.getElementById("preferencesError").innerText = "";
+
+            if (!/^\d{10}$/.test(phone.value)) {
+                document.getElementById("phoneError").innerText = "Must be 10 digits";
+                phone.focus();
+                valid = false;
+            } else document.getElementById("phoneError").innerText = "";
+
+            let emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email.value)) {
+                document.getElementById("emailError").innerText = "Invalid email format";
+                email.focus();
+                valid = false;
+            } else document.getElementById("emailError").innerText = "";
+
+            let passwordPattern = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).{8,15}$/;
+            if (!passwordPattern.test(password.value)) {
+                document.getElementById("passwordError").innerText = "Must contain a letter, a number & a special character (8-15 chars)";
+                password.focus();
+                valid = false;
+            } else document.getElementById("passwordError").innerText = "";
+
+            let panPattern = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
+            if (pan.value !== "" && !panPattern.test(pan.value)) {
+                document.getElementById("panError").innerText = "Invalid PAN format (AAAAA9999A)";
+                pan.focus();
+                valid = false;
+            } else document.getElementById("panError").innerText = "";
+
+            if (valid) alert("Form submitted successfully!");
+        }
+    </script>
+
+</body>
+</html>
