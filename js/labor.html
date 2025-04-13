@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>wage</title>
+</head>
+<body>
+    <script>
+        let hoursWorked = prompt("Enter the number of hours worked:");
+        let costOfMaterials = prompt("Enter the cost of materials:");
+
+        hoursWorked = Number(hoursWorked);
+        costOfMaterials = Number(costOfMaterials);
+
+        if (isNaN(hoursWorked) || isNaN(costOfMaterials) || hoursWorked < 0 || costOfMaterials < 0) {
+            alert("Please enter valid positive numbers.");
+        } else {
+            let labourCost = 45 * hoursWorked;
+            let totalCharge = labourCost + costOfMaterials;
+            alert("Labour Cost: Rs. " + labourCost + "\nTotal Charge: Rs. " + totalCharge);
+        }
+    </script>
+</body>
+</html>
