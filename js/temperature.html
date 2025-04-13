@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 50%;
+        }
+        th,td{
+            border:1px solid black;
+            padding:10px;
+            text-align:center
+        }
+        th{
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <h2>New York Temperature Report</h2>
+    <table id="tt">
+            <tr>
+                <th>Day</th>
+                <th>Temperature</th>
+                <th>Category</th>
+            </tr>
+    </table>
+    <p>HOT:<span id="a" style="color:red"></span></p>
+    <p>PLEASANT:<span id="b" style="color:lightgreen"></span></p>
+    <p>COLD:<span id="c" style="color:blue"></span></p>
+    <script>
+        let a=[55,62,68,74,59,45,41,58,60,67,65,78,82,88,91,92,90,93,87,80,78,79,72,68,61,59,55,65];
+        let hot=0,cold=0,pl=0;
+        let tb=document.querySelector("#tt");
+        let j=1;
+        for(let i=0;i<a.length;i++){
+            let t=a[i];
+            let cat="";
+            if(t>=85){
+                hot++;
+                cat="HOT";
+            }else if(t>=60&&t<85){
+                pl++;
+                cat="PLEASANT";
+            }else{
+                cold++;
+                cat="COLD";
+            }
+            let row=tb.insertRow();
+            let c1=row.insertCell(0);
+            let c2=row.insertCell(1);
+            let c3=row.insertCell(2);
+            c1.innerText=`${j++}`;
+            c2.innerText=`${t}°F`;
+            c3.innerText=`${cat}`;
+        }
+        let x=document.querySelector("#a");
+        let y=document.querySelector("#b");
+        let z=document.querySelector("#c");
+        x.innerText=hot;
+        y.innerText=pl;
+        z.innerText=cold;
+    </script>
+</body>
+</html>
