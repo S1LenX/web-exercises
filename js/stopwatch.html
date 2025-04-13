@@ -1,0 +1,48 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <h3>Stopwatch</h3>
+        <div id="stopwatch">00:00:00</div>
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+        <button id="reset">Reset</button>
+        <script>
+            let s=0,m=0,h=0;
+            let timer=null;
+            const time=()=>{
+                s++;
+                if(s==60){
+                    s=0;
+                    m++;
+                }
+                if(m==60){
+                    m=0;
+                    h++;
+                }
+                document.querySelector("#stopwatch").innerText=`${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+            }
+            document.querySelector("#start").addEventListener("click",()=>{
+                if(!timer){
+                    timer=setInterval(time,1000);
+                }
+            });
+            document.querySelector("#stop").addEventListener("click", () => {
+                clearInterval(timer);
+                timer = null;
+            });
+            document.querySelector("#reset").addEventListener("click",()=>{
+                clearInterval(timer);
+                timer = null;
+                s=0;
+                m=0;
+                h=0;
+                document.querySelector("#stopwatch").innerText="00:00:00";
+            })
+        </script>
+    </body>
+    </html>
