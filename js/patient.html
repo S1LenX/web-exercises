@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="x">Sort in Descending</button>
+    <button id="y">find by Pid</button>
+    <button id="z">filter</button>
+    <h3>Output:</h3>
+    <div id="output"></div>
+    <script>
+        let id=[1,2,3,4,5,6,7,8];
+        let name=["Alen","Deena","Diana","Jack","Jain","Kelvin","Louis","Rex"];
+        let age=[39,47,21,54,23,61,69,49];
+        let n=id.length;
+        let q1=document.querySelector("#y");
+        let op=document.querySelector("#output");
+        q1.addEventListener("click",()=>{
+            let j=parseInt(prompt("Enter Pid"));
+            let u=false;
+            for(let i=0;i<n;i++){
+                if(j==id[i]){
+                    u=true;
+                }
+            }
+            if(u){
+                alert("Present");
+            }else{
+                alert("Absent");
+            }
+        })
+        const f1=()=>
+        {
+            for(let i=0;i<n;i++){
+                for(let j=0;j<n-i-1;j++){
+                    if(age[j]<age[j+1]){
+                        let a=id[j];
+                        let b=name[j];
+                        let c=age[j];
+                        id[j]=id[j+1];
+                        name[j]=name[j+1];
+                        age[j]=age[j+1];
+                        id[j+1]=a;
+                        name[j+1]=b;
+                        age[j+1]=c;
+                    }
+                }
+            }
+            op.innerHTML="";
+            for(let i=0;i<n;i++){
+                op.innerHTML+=`<p>P-id: ${id[i]}, Name: ${name[i]}, Age: ${age[i]} </p>`;
+            }
+        }
+        
+        document.querySelector("#x").addEventListener("click", f1);
+        document.querySelector("#z").addEventListener("click", ()=>{
+            op.innerHTML="";
+            let r1=parseInt(prompt("Enter min Age"));
+            let r2=parseInt(prompt("Enter max Age"));
+            for(let i=0;i<n;i++){
+                if(age[i]>=r1&&age[i]<=r2){
+                    op.innerHTML+=`<p>P-id: ${id[i]}, Name: ${name[i]}, Age: ${age[i]} </p>`;
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>
