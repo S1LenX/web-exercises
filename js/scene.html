@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Pond Scene</title>
+</head>
+<body>
+
+    <h2 style="text-align: center;">Animated Pond Scene</h2>
+    <canvas id="pondScene" width="600" height="350" style="border:1px solid black; display: block; margin: auto;"></canvas>
+
+    <script>
+        const canvas = document.getElementById("pondScene");
+        const ctx = canvas.getContext("2d");
+
+        let boatX = 270;
+        let direction = 1;
+
+        function drawScene() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            ctx.beginPath();
+            ctx.ellipse(300, 200, 100, 50, 0, 0, Math.PI * 2);
+            ctx.fillStyle = "lightblue";
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(boatX, 200);
+            ctx.lineTo(boatX + 40, 200);
+            ctx.lineTo(boatX + 30, 210);
+            ctx.lineTo(boatX + 10, 210);
+            ctx.closePath();
+            ctx.fillStyle = "brown";
+            ctx.fill();
+            ctx.stroke();
+
+            boatX += direction * 1.5;
+            if (boatX > 330 || boatX < 270) {
+                direction *= -1;
+            }
+
+            ctx.beginPath();
+            ctx.arc(500, 50, 30, 0, Math.PI * 2);
+            ctx.fillStyle = "yellow";
+            ctx.fill();
+            ctx.stroke();
+
+            for (let i = 0; i < 12; i++) {
+                let angle = (i * Math.PI) / 6;
+                let x1 = 500 + Math.cos(angle) * 30;
+                let y1 = 50 + Math.sin(angle) * 30;
+                let x2 = 500 + Math.cos(angle) * 40;
+                let y2 = 50 + Math.sin(angle) * 40;
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
+            }
+
+            ctx.fillStyle = "red";
+            ctx.beginPath();
+            ctx.moveTo(100, 130);
+            ctx.lineTo(150, 100);
+            ctx.lineTo(200, 130);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.fillStyle = "orange";
+            ctx.fillRect(110, 130, 80, 60);
+            ctx.strokeRect(110, 130, 80, 60);
+
+            ctx.fillStyle = "brown";
+            ctx.fillRect(140, 160, 20, 30);
+            ctx.strokeRect(140, 160, 20, 30);
+
+            ctx.fillStyle = "blue";
+            ctx.fillRect(115, 140, 15, 15);
+            ctx.strokeRect(115, 140, 15, 15);
+
+            ctx.beginPath();
+            ctx.moveTo(450, 250);
+            ctx.lineTo(450, 300);
+            ctx.strokeStyle = "green";
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(440, 270, 10, 0, Math.PI, true);
+            ctx.arc(460, 270, 10, 0, Math.PI, true);
+            ctx.fillStyle = "green";
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(450, 230, 25, 0, Math.PI * 2);
+            ctx.fillStyle = "pink";
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(450, 230, 5, 0, Math.PI * 2);
+            ctx.fillStyle = "yellow";
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.arc(350, 250, 15, 0, Math.PI * 2);
+            ctx.fillStyle = "yellow";
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(370, 240, 10, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(373, 237, 2, 0, Math.PI * 2);
+            ctx.fillStyle = "black";
+            ctx.fill();
+
+            ctx.beginPath();
+            ctx.moveTo(378, 240);
+            ctx.lineTo(385, 243);
+            ctx.lineTo(378, 246);
+            ctx.closePath();
+            ctx.fillStyle = "orange";
+            ctx.fill();
+            ctx.stroke();
+
+            let stones = [
+                { x: 90, y: 220 }, { x: 110, y: 225 }, { x: 130, y: 220 },
+                { x: 370, y: 275 }, { x: 390, y: 280 }
+            ];
+
+            ctx.fillStyle = "gray";
+            stones.forEach(stone => {
+                ctx.beginPath();
+                ctx.arc(stone.x, stone.y, 10, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.stroke();
+            });
+
+            requestAnimationFrame(drawScene);
+        }
+
+        drawScene();
+    </script>
+
+</body>
+</html>
