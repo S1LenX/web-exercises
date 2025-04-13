@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input, button {
+            margin: 10px; padding: 5px; 
+        }
+        body{
+            background-color: rgb(207, 239, 160);
+            text-align: center;
+        }
+        .c{
+            margin:auto;
+            margin-top:200px;
+            width:300px;
+            padding:20px;
+            border-radius: 10px;
+            background-color:rgb(173, 237, 173);
+        }
+        .item {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div class="c">
+    <label>Customer Name</label><br>
+    <input type="text" id="name"><br>
+    <label>Phone Number</label><br>
+    <input type="text" id="no"><br>
+    <label>Email</label><br>
+    <input type="email" id="mail"><br>
+    <div class="item">
+        <input type="checkbox">Apple ($10/kg)
+        <input type="number" id="ac">
+    </div>
+    <div class="item">
+        <input type="checkbox">Banana ($5/kg)
+        <input type="number" id="bc">
+    </div>
+    <div class="item">
+        <input type="checkbox">Avocado ($7/kg)
+        <input type="number" id="acc">
+    </div>
+    <input type="submit" id="sbt" style="color:white;background-color: orange;border-width:0px ;width: 120px;height:35px;font-size: 15px;cursor:pointer">
+    </div>
+    <script>
+        let y=document.querySelector("#sbt");
+        y.addEventListener("click",()=>{
+            let name = document.querySelector("#name").value;
+            let no = document.querySelector("#no").value;
+            let em = document.querySelector("#mail").value;
+            let ac = document.querySelector("#ac").value*10;
+            let bc = document.querySelector("#bc").value*5;
+            let acc = document.querySelector("#acc").value*7;
+
+            localStorage.setItem("name", name);
+            localStorage.setItem("no", no);
+            localStorage.setItem("em", em);
+            localStorage.setItem("ac", ac);
+            localStorage.setItem("bc", bc);
+            localStorage.setItem("acc", acc);
+            window.location.href="receipt.html"
+        })
+    </script>
+</body>
+</html>
