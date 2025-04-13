@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        input, select, button { margin: 5px; padding: 10px; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <script>
+        let num1 = parseFloat(prompt("Enter first number:"));
+        let num2 = parseFloat(prompt("Enter second number:"));
+        let operation = prompt("Choose operation (+, -, *, /, %):");
+
+        let result;
+        if (operation === "+") {
+            result = num1 + num2;
+        } else if (operation === "-") {
+            result = num1 - num2;
+        } else if (operation === "*") {
+            result = num1 * num2;
+        } else if (operation === "/") {
+            if (num2 !== 0) {
+                result = num1 / num2;
+            } else {
+                result = "Error! Division by zero.";
+            }
+        } else if (operation === "%") {
+            result = num1 % num2;
+        } else {
+            result = "Invalid operation!";
+        }
+
+        alert("Result: " + result);
+    </script>
+</body>
+</html>
