@@ -1,0 +1,54 @@
+body {
+    background-image: url('https://png.pngtree.com/background/20210716/original/pngtree-simple-cute-pet-dog-background-picture-image_1375478.jpg');
+    background-position: center;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+.rainbow-heading {
+    font-size: 3em;
+    text-align: center;
+    background: linear-gradient(to right, 
+        violet, indigo, blue, green, yellow, orange, red);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: rainbow 5s linear infinite;
+}
+
+.pet-description {
+    column-count: 3;
+    column-gap: 40px;
+    line-height: 30pt;
+    margin: 30px 0;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+}
+
+@keyframes rainbow {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+
+@keyframes playBall {
+    0% {
+        transform: translate(0, 0) rotate(0deg) skew(0deg);
+    }
+    25% {
+        transform: translate(200px, -100px) rotate(90deg) skew(10deg);
+    }
+    50% {
+        transform: translate(400px, 0) rotate(180deg) skew(0deg);
+    }
+    75% {
+        transform: translate(200px, -50px) rotate(270deg) skew(-10deg);
+    }
+    100% {
+        transform: translate(0, 0) rotate(360deg) skew(0deg);
+    }
+}
+
+.ball {
+    animation: playBall 4s infinite ease-in-out;
+}
