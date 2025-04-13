@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23BCE1540</title>
+</head>
+<body>
+    <form>
+        <fieldset style="width:450px">
+            <legend style="color:red"><b>Personal Details</b></legend><br>
+            <label style="margin-right: 45px;">Name</label>:
+            <input type="text" required placeholder="Enter Name"><br><br>
+            <label style="margin-right: 22px;">Password</label>:
+            <input type="password" required placeholder="Enter Password"><br><br>
+            <label style="margin-right: 19px;">E-mail ID</label>:
+            <input type="email" required placeholder="Enter E-mail"><br><br>
+            <div>
+            <label style="margin-right: 37px;">Gender</label>:
+            <input type="radio" value="male" name="x"> Male
+            <input type="radio" value="female" name="x"> Female <br><br>
+            </div>
+            <label style="margin-right: 49px;">DOB</label>:
+            <input type="date"><br><br>
+            <label style="margin-right: 29px;">Mobile#</label>:
+            <input type="tel" placeholder="Enter Contact Number"><br><br>
+
+        </fieldset>
+        <fieldset style="width:450px">
+            <legend style="color:red"><b>Educational Qualification</b></legend><br>
+            <label>Degree:</label>
+            <select>
+                <option>-- Select Group --</option>
+                <optgroup label="UG">
+                    <option>BE</option>
+                    <option>BTech</option>
+                    <option>BSc</option>
+                    <option>BA</option>
+                    <option>BCA</option>
+                    <option>BBA</option>
+                    <option>Others</option>
+                </optgroup>
+                <optgroup label="PG">
+                    <option>ME</option>
+                    <option>MTech</option>
+                    <option>MSc</option>
+                    <option>MA</option>
+                    <option>MCA</option>
+                    <option>MBA</option>
+                    <option>Others</option>
+                </optgroup>
+                <optgroup label="PhD">
+                    <option>Engineering</option>
+                    <option>Science</option>
+                    <option>Management</option>
+                    <option>Others</option>
+                </optgroup>
+            </select>
+            <label>Engineering:</label>
+            <select>
+                    <option>-- Select Group --</option>
+                    <option>CSE</option>
+                    <option>ECE</option>
+                    <option>EEE</option>
+                    <option>CIVIL</option>
+                    <option>MECH</option>
+            </select>
+        </fieldset><br>
+        <label>Hobbies:</label>
+        <input type="checkbox">
+        <label>Playing Chess</label>
+        <input type="checkbox">
+        <label>Reading Books</label><br><br>
+        <label>Favourite Colour:</label>
+        <input type="color"><br><br>
+        <h3 style="color:red;margin:0px"><b>Address</b></h3>
+        <textarea rows="4" cols="50" placeholder="Enter Address"></textarea><br>
+        <label>Attach Resume:</label>
+        <input type="file">
+        <input type="Submit"><br><br>
+    </form>
+    <form oninput="x.value=parseInt(a.value)+parseInt(b.value)+parseInt(c.value)">
+        <label>feedback:</label><br>
+        <label>Quality: </label>
+        0<input type="range" id="a" value="50" min="0" max="200">200 <br>
+        <label>Design:</label>
+        0<input type="range" id="b" value="50">100 <br>
+        <label>Performance:</label>
+        0<input type="range" id="c" value="50">100 <br><br>
+        Total Feedback Value:<output id="x"></output>
+    </form>
+</body>
+</html>
