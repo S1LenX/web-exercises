@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analog Clock</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        canvas {
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="clockCanvas" width="400" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('clockCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
+        const clockRadius = Math.min(canvas.width, canvas.height) / 2 - 20;
+
+        function drawClockFace() {
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, clockRadius, 0, Math.PI * 2);
+            ctx.fillStyle = '#f0f0f0';
+            ctx.fill();
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            ctx.closePath();
+
+            for (let i = 0; i < 12; i++) {
+                const angle = (i - 3) * (Math.PI / 6);
+                const startX = centerX + Math.cos(angle) * (clockRadius - 20);
+                const startY = centerY + Math.sin(angle) * (clockRadius - 20);
+                const endX = centerX + Math.cos(angle) * clockRadius;
+                const endY = centerY + Math.sin(angle) * clockRadius;
+
+                ctx.beginPath();
+                ctx.moveTo(startX, startY);
+                ctx.lineTo(endX, endY);
+                ctx.strokeStyle = '#333';
+                ctx.lineWidth = i % 3 === 0 ? 4 : 2;
+                ctx.stroke();
+                ctx.closePath();
+
+                if (i !== 0) {
+                    ctx.beginPath();
+                    ctx.font = '16px Arial';
+                    ctx.fillStyle = '#333';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    const numberX = centerX + Math.cos(angle) * (clockRadius - 40);
+                    const numberY = centerY + Math.sin(angle) * (clockRadius - 40);
+                    ctx.fillText(i === 0 ? 12 : i, numberX, numberY);
+                    ctx.closePath();
+                }
+            }
+        }
+
+        function drawClockHands() {
+            const now = new Date();
+            const hours = now.getHours() % 12;
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+
+            const hourAngle = (hours + minutes / 60 - 3) * (Math.PI / 6);
+            ctx.beginPath();
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 6;
+            ctx.lineCap = 'round';
+            ctx.moveTo(centerX, centerY);
+            ctx.lineTo(
+                centerX + Math.cos(hourAngle) * (clockRadius * 0.5),
+                centerY + Math.sin(hourAngle) * (clockRadius * 0.5)
+            );
+            ctx.stroke();
+            ctx.closePath();
+
+            const minuteAngle = (minutes + seconds / 60 - 15) * (Math.PI / 30);
+            ctx.beginPath();
+            ctx.strokeStyle = '#666';
+            ctx.lineWidth = 4;
+            ctx.lineCap = 'round';
+            ctx.moveTo(centerX, centerY);
+            ctx.lineTo(
+                centerX + Math.cos(minuteAngle) * (clockRadius * 0.7),
+                centerY + Math.sin(minuteAngle) * (clockRadius * 0.7)
+            );
+            ctx.stroke();
+            ctx.closePath();
+
+            const secondAngle = (seconds - 15) * (Math.PI / 30);
+            ctx.beginPath();
+            ctx.strokeStyle = 'red';
+            ctx.lineWidth = 2;
+            ctx.lineCap = 'round';
+            ctx.moveTo(centerX, centerY);
+            ctx.lineTo(
+                centerX + Math.cos(secondAngle) * (clockRadius * 0.9),
+                centerY + Math.sin(secondAngle) * (clockRadius * 0.9)
+            );
+            ctx.stroke();
+            ctx.closePath();
+
+            ctx.beginPath();
+            ctx.fillStyle = '#333';
+            ctx.arc(centerX, centerY, 5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        function updateClock() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            drawClockFace();
+            drawClockHands();
+        }
+
+        updateClock();
+
+        setInterval(updateClock, 1000);
+    </script>
+</body>
+</html>
