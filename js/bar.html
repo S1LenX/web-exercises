@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic Charts with Plotly.js</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        .chart-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .chart {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Interactive Charts Dashboard</h1>
+    <div class="chart-container">
+        <div id="barChart" class="chart"></div>
+        <div id="lineChart" class="chart"></div>
+        <div id="pieChart" class="chart"></div>
+        <div id="donutChart" class="chart"></div>
+    </div>
+
+    <script>
+        const salesData = {
+            months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+            revenue: [12000, 15000, 18000, 14000, 20000, 22000],
+            expenses: [8000, 9000, 10000, 9500, 11000, 12000]
+        };
+
+        const productSales = {
+            categories: ['Electronics', 'Clothing', 'Books', 'Furniture', 'Toys'],
+            sales: [25, 20, 15, 25, 15]
+        };
+
+        function createBarChart() {
+            const trace1 = {
+                x: salesData.months,
+                y: salesData.revenue,
+                name: 'Revenue',
+                type: 'bar',
+                marker: {
+                    color: 'rgba(75, 192, 192, 0.8)',
+                    line: {
+                        width: 1.5
+                    }
+                }
+            };
+
+            const trace2 = {
+                x: salesData.months,
+                y: salesData.expenses,
+                name: 'Expenses',
+                type: 'bar',
+                marker: {
+                    color: 'rgba(255, 99, 132, 0.8)',
+                    line: {
+                        width: 1.5
+                    }
+                }
+            };
+
+            const layout = {
+                title: 'Monthly Revenue vs Expenses',
+                xaxis: { title: 'Months' },
+                yaxis: { title: 'Amount ($)' },
+                barmode: 'group'
+            };
+
+            Plotly.newPlot('barChart', [trace1, trace2], layout);
+        }
+
+        function createLineChart() {
+            const trace = {
+                x: salesData.months,
+                y: salesData.revenue,
+                type: 'scatter',
+                mode: 'lines+markers',
+                name: 'Revenue Trend',
+                line: {
+                    color: 'rgb(55, 128, 191)',
+                    width: 3
+                },
+                marker: {
+                    color: 'rgb(55, 128, 191)',
+                    size: 8
+                }
+            };
+
+            const layout = {
+                title: 'Revenue Trend Over Months',
+                xaxis: { title: 'Months' },
+                yaxis: { title: 'Revenue ($)' }
+            };
+
+            Plotly.newPlot('lineChart', [trace], layout);
+        }
+
+        function createPieChart() {
+            const trace = {
+                labels: productSales.categories,
+                values: productSales.sales,
+                type: 'pie',
+                hole: 0,
+                marker: {
+                    colors: [
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(255, 206, 86, 0.8)',
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(153, 102, 255, 0.8)'
+                    ]
+                }
+            };
+
+            const layout = {
+                title: 'Product Sales Distribution',
+            };
+
+            Plotly.newPlot('pieChart', [trace], layout);
+        }
+
+        function createDonutChart() {
+            const trace = {
+                labels: productSales.categories,
+                values: productSales.sales,
+                type: 'pie',
+                hole: 0.4,
+                marker: {
+                    colors: [
+                        'rgba(255, 99, 132, 0.8)',
+                        'rgba(54, 162, 235, 0.8)',
+                        'rgba(255, 206, 86, 0.8)',
+                        'rgba(75, 192, 192, 0.8)',
+                        'rgba(153, 102, 255, 0.8)'
+                    ]
+                }
+            };
+
+            const layout = {
+                title: 'Product Sales Breakdown',
+            };
+
+            Plotly.newPlot('donutChart', [trace], layout);
+        }
+
+        function initializeCharts() {
+            createBarChart();
+            createLineChart();
+            createPieChart();
+            createDonutChart();
+        }
+
+        initializeCharts();
+    </script>
+</body>
+</html>
