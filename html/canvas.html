@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Laptop Canvas Drawing</title>
+</head>
+<body>
+    <canvas id="laptopCanvas" width="400" height="300" style="border:1px solid #000;"></canvas>
+    <script>
+        const canvas = document.getElementById('laptopCanvas');
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#4a0a2e';  
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        ctx.fillStyle = '#c0c0c0';
+        ctx.beginPath();
+        ctx.roundRect(100, 50, 200, 150, 10);
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(75, 200);
+        ctx.lineTo(325, 200);
+        ctx.lineTo(350, 220);
+        ctx.lineTo(50, 220);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.fillStyle = '#303030';
+        ctx.beginPath();
+        ctx.roundRect(110, 60, 180, 130, 5);
+        ctx.fill(); 
+        ctx.beginPath();
+        ctx.arc(200, 125, 40, 0, Math.PI * 2);
+        ctx.fillStyle = '#FFD700';  // Yellow color
+        ctx.fill();
+
+        const gradient = ctx.createRadialGradient(180, 105, 5, 200, 125, 40);
+        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.8)');
+        gradient.addColorStop(0.2, 'rgba(255, 215, 0, 0.6)');
+        gradient.addColorStop(1, 'rgba(255, 215, 0, 0)');
+        
+        ctx.beginPath();
+        ctx.arc(200, 125, 40, 0, Math.PI * 2);
+        ctx.fillStyle = gradient;
+        ctx.fill();
+    </script>
+</body>
+</html>
