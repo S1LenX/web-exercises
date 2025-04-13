@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Airline Reservation System</h1>
+    <button id="a">Book a seat</button>
+    <h2>Boarding Pass:</h2>
+    <p>Passenger: <span id="j"></span></p>
+    <p>Seat Number: <span id="k"></span></p>
+    <p>Class: <span id="l"></span></p>
+    <div id="output"></div>
+    <script>
+        let x=document.querySelector("#a");
+        let op=document.querySelector("#output");
+        let seats = new Array(10).fill(0);
+        let a=1;
+        let b=6;
+        let y=0;
+        x.addEventListener("click", () => {
+        let s, n;
+        while (true) {
+            s = prompt("Enter 1 or 2");
+            if (s != "1" && s != "2") {
+                alert("Invalid choice. Please enter 1 or 2.");
+                continue;
+            }
+            n = prompt("Enter Name");
+            if (s == "1") {
+                if (a > 5) {
+                    alert("Section 1 is full. Please select Section 2.");
+                    continue;
+                }
+                seats[a - 1] = n;
+                let m1=document.querySelector("#j");
+                let m2=document.querySelector("#k");
+                let m3=document.querySelector("#l");
+                m1.innerText=n;
+                m2.innerText=a++;
+                m3.innerText="First Class";
+            } else if (s == "2") {
+                if (b > 10) {
+                    alert("Section 2 is full. Please select Section 1.");
+                    continue;
+                }
+                seats[b - 1] = n;
+                let m1=document.querySelector("#j");
+                let m2=document.querySelector("#k");
+                let m3=document.querySelector("#l");
+                m1.innerText=n;
+                m2.innerText=b++;
+                m3.innerText="Second Class";
+            }
+            let result= "<h3>Seat Assignments:</h3><ul>";
+            for(let i=0;i<seats.length;i++){
+                if(seats[i]!==0){
+                    result+=`<li>Seat ${i+1}: ${seats[i]}</li>`;
+                }
+            }
+            result+="</ul>";
+            op.innerHTML=result;
+            break;
+        }
+
+    });
+    </script>
+</body>
+</html>
