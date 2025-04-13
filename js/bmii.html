@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMI Calculator</title>
+</head>
+<body>
+
+    <h2>BMI Calculator</h2>
+
+    <label for="gender">Select Gender:</label>
+    <select id="gender">
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+    </select>
+    <br><br>
+
+    <label for="weight">Enter Your Weight (in pounds):</label>
+    <input type="number" id="weight">
+    <br><br>
+
+    <label for="feet">Enter Your Height:</label>
+    <input type="number" id="feet" placeholder="Feet">
+    <input type="number" id="inches" placeholder="Inches">
+    <br><br>
+
+    <button onclick="calculateBMI()">Calculate</button>
+
+    <script>
+        function calculateBMI() {
+            let gender = document.getElementById("gender").value;
+            let weight = parseFloat(document.getElementById("weight").value);
+            let feet = parseFloat(document.getElementById("feet").value);
+            let inches = parseFloat(document.getElementById("inches").value);
+
+            if (isNaN(weight) || isNaN(feet) || isNaN(inches)) {
+                alert("Please enter valid values for weight and height.");
+                return;
+            }
+
+            let heightInInches = (feet * 12) + inches;
+            let bmi = (703 * weight) / (heightInInches * heightInInches);
+            bmi = bmi.toFixed(2);
+
+            let status = getBMIStatus(bmi, gender);
+            alert(`Your BMI is ${bmi}\nStatus: ${status}`);
+        }
+
+        function getBMIStatus(bmi, gender) {
+            if (gender === "male") {
+                if (bmi < 17.50) return "Anorexia";
+                if (bmi >= 17.50 && bmi <= 20.70) return "Underweight";
+                if (bmi >= 20.71 && bmi <= 26.40) return "Ideal Range";
+                if (bmi >= 26.41 && bmi <= 27.10) return "Marginally Overweight";
+                if (bmi >= 27.11 && bmi <= 31.10) return "Overweight Range";
+                return "Obese";
+            } else {
+                if (bmi < 17.50) return "Anorexia";
+                if (bmi >= 17.51 && bmi <= 19.10) return "Underweight";
+                if (bmi >= 19.11 && bmi <= 25.80) return "Ideal Range";
+                if (bmi >= 25.81 && bmi <= 27.30) return "Marginally Overweight";
+                if (bmi >= 27.31 && bmi <= 32.30) return "Overweight Range";
+                return "Obese";
+            }
+        }
+    </script>
+
+</body>
+</html>
