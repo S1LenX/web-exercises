@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        input, button {
+            margin: 10px; padding: 5px; 
+        }
+        body{
+            background-color: rgb(207, 239, 160);
+            text-align: center;
+        }
+        .c{
+            margin:auto;
+            margin-top:200px;
+            width:300px;
+            padding:20px;
+            border-radius: 10px;
+            background-color:rgb(173, 237, 173);
+        }
+    </style>
+</head>
+<body>
+    <div class="c">
+    <h2>Receipt</h2>
+    <p><b>Customer Name:</b> <span id="cust-name"></span></p>
+    <p><b>Phone Number:</b> <span id="cust-no"></span></p>
+    <p><b>Email:</b> <span id="cust-email"></span></p>
+    <h3>Order Details:</h3>
+    <div id ="p"></div>
+    <div>
+    <script>
+        document.querySelector("#cust-name").innerText=localStorage.getItem("name");
+        document.querySelector("#cust-no").innerText=localStorage.getItem("no");
+        document.querySelector("#cust-email").innerText=localStorage.getItem("em");
+
+        let x=localStorage.getItem("ac");
+        let y=localStorage.getItem("bc");
+        let z=localStorage.getItem("acc");
+        let total=parseInt(x)+parseInt(z)+parseInt(z);
+        let u=document.querySelector("#p");
+        u.innerHTML=`
+        <p> Apple : $${x}</p>
+        <p> Banana : $${y}</p>
+        <p> Avocado : $${z}</p>
+        <p>Total: $${total}</p>
+            `;
+    </script>
+</body>
+</html>
